@@ -3,6 +3,7 @@ import Reveal from '../reveal';
 
 // Import foto lokal
 import daus from "/src/assets/person/daus.jpg";
+import qisthi from "/src/assets/person/qisthi.jpg";
 import arin from "/src/assets/person/arin.jpg";
 import ela from "/src/assets/person/ela.jpg";
 import kokom from "/src/assets/person/kokom.jpg";
@@ -19,30 +20,36 @@ const TeamSection = () => {
     },
     {
       id: 2,
+      name: "Qisthi Azzahra",
+      role: "Human Resource & Development",
+      image: qisthi
+    },
+    {
+      id: 3,
       name: "Ela Nur Ajijah",
       role: "Marketing Specialist",
       image: ela
     },
     {
-      id: 3,
+      id: 4,
       name: "Marina Cinta Mentari",
       role: "Graphic Designer",
       image: arin
     },
     {
-      id: 4,
+      id: 5,
       name: "Siti Nur Komariah",
       role: "Operations Staff",
       image: kokom
     },
     {
-      id: 5,
+      id: 6,
       name: "Nauval Ramadan",
       role: "Operations Staff",
       image: noval
     },
     {
-      id: 6,
+      id: 7,
       name: "Zaky Aulia Qolbi",
       role: "Full-Stack Developer",
       image: Zaky
