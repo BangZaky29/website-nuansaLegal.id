@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LogoNuansaLegal from './assets/BKBlank_LogoPTNuansaSejahtera.png';
+import LogoNuansaLegal from './assets/halimoon_noBK.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,9 +9,15 @@ const Header = () => {
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <a href="#home" className="logo">
+          <div className="logo-container">
+            <a href="#home" className="logo">
             <img src={LogoNuansaLegal} alt="Nuansa Legal" className="logo-img" />
           </a>
+          <p>
+            Support<br />
+            By Nuansa Legal
+          </p>
+          </div>
           <nav>
             <ul className={`nav-menu ${menuOpen ? 'active' : ''}`}>
               <li><a href="#home">Home</a></li>
