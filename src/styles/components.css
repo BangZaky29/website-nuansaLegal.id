@@ -82,7 +82,7 @@
 }
 
 
-.logo-img {
+.logo-halimoon {
   height: 45px;
   width: 150px;
   flex-wrap: wrap;
@@ -90,6 +90,20 @@
   border-radius: 8px;
   /* box-shadow: 0 4px 12px rgba(0,0,0,0.12); */
 }
+
+
+
+.logo-nuansa-legal {
+  margin-left: 15px;
+  height: 45px;
+  width: 120px;
+  flex-wrap: wrap;
+  object-fit: cover;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.12); */
+}
+
+
 
 .nav-menu {
   display: flex;
@@ -332,7 +346,8 @@
 
   .hero-content { grid-template-columns: 1fr !important; gap: 24px; text-align: center; }
   .hero { padding-top: calc(var(--header-height) + 24px); }
-  .logo-img { height: 36px; width: 120px; }
+  .logo-halimoon { height: 36px; width: 120px; }
+  .logo-nuansa-legal { margin-left: 15px; height: 36px; width: 80px; }
   .btn-primary { padding: 10px 22px; font-size: 15px; }
   .hero-text h1 { font-size: clamp(28px, 6vw, 34px); }
   .hero-text p { font-size: 15px; }
@@ -346,7 +361,8 @@
 
 @media (max-width: 480px) {
   .header { padding: 12px 0; }
-  .logo-img { height: 32px; width: 100px; }
+  .logo-halimoon { height: 32px; width: 100px; }
+  .logo-nuansa-legal { margin-left: 15px; height: 32px; width: 80px; }
   .btn-primary { padding: 9px 18px; font-size: 14px; border-radius: 10px; }
   .hero { padding-top: calc(var(--header-height) + 16px); padding-bottom: 64px; }
   .hero-text h1 { font-size: clamp(24px, 7vw, 30px); }
