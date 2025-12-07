@@ -1,140 +1,132 @@
 /* ==========================================
-   PRICING STYLES
+   PRICING CAROUSEL STYLES
    ========================================== */
+
 .pricing {
   background: white;
-  padding: 60px 0;
+  padding: 80px 0;
+  min-height: auto;
 }
 
-/* Pricing Slider Wrapper */
-.pricing-slider-wrapper {
+.pricing .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Carousel Header */
+.carousel-header {
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 60px;
+}
+
+.carousel-header h2 {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.carousel-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin: 0;
+  color: #666;
+}
+
+/* Carousel Container */
+.carousel-container {
   position: relative;
-  margin-top: 40px;
-  padding: 0 60px;
-  border-radius: 20px;
-}
-
-/* Navigation Buttons */
-.slider-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--gradient);
-  border: none;
-  cursor: pointer;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: visible;
 }
 
-.slider-nav:hover {
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-}
-
-.slider-nav:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.slider-nav svg {
-  color: var(--text-dark);
-  transition: transform 0.3s;
-}
-
-.slider-nav:hover svg {
-  transform: scale(1.2);
-}
-
-.slider-nav-left {
-  left: 0;
-}
-
-.slider-nav-right {
-  right: 0;
-}
-
-/* Pricing Scroll Container */
-.pricing-grid {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  padding: 20px 5px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.pricing-grid::-webkit-scrollbar {
-  display: none;
-}
-
-/* Pricing Card */
-.pricing-card {
-  position: relative;
-  min-width: 320px;
-  max-width: 320px;
-  border: 2px solid #f0f0f0;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  padding: 0;
-  background: white;
-  flex-shrink: 0;
-}
-
-.pricing-card:hover {
-  border-color: var(--yellow2);
-  transform: translateY(-8px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-}
-
-.pricing-card.recommended {
-  border: 3px solid var(--yellow2);
-  box-shadow: 0 10px 30px rgba(255, 204, 0, 0.25);
-  min-width: 340px;
-  max-width: 340px;
-}
-
-.pricing-card.recommended:hover {
-  box-shadow: 0 15px 40px rgba(255, 204, 0, 0.35);
-  transform: translateY(-10px);
-}
-
-.recommended-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: var(--gradient);
-  color: var(--text-dark);
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-size: 13px;
-  font-weight: 700;
-  z-index: 10;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Pricing Poster Styles */
-.pricing-poster {
+.carousel-track {
   position: relative;
   width: 100%;
-  height: 380px;
-  overflow: hidden;
-  cursor: pointer;
-  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.pricing-poster img {
+/* Carousel Card */
+.carousel-card {
+  position: absolute;
+  padding: 15px;
+  width: 350px;
+  height: 520px;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  border: 2px solid #f0f0f0;
+  left: 50%;
+  margin-left: -175px; /* Setengah dari width card untuk center */
+}
+
+.carousel-card.activeSlide {
+  transform: translateX(0) scale(1.1) rotateY(0deg);
+  z-index: 10;
+  opacity: 1;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-card.prevSlide {
+  transform: translateX(-400px) scale(0.85) rotateY(25deg);
+  z-index: 5;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}
+
+.carousel-card.nextSlide {
+  transform: translateX(400px) scale(0.85) rotateY(-25deg);
+  z-index: 5;
+  opacity: 0.6;
+  filter: brightness(0.7);
+}
+
+.carousel-card:hover.activeSlide {
+  transform: translateX(0) scale(1.12) rotateY(0deg);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.25);
+  border-color: var(--yellow2);
+}
+
+/* Recommended Badge */
+.recommended-badge-carousel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #333;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Image Wrapper */
+.card-image-wrapper {
+  width: 100%;
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.card-poster-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -142,117 +134,161 @@
   transition: transform 0.5s ease;
 }
 
-.pricing-poster:hover img {
+.carousel-card:hover.activeSlide .card-poster-image {
   transform: scale(1.08);
 }
 
-.poster-click-hint {
+.card-name-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  padding: 40px 20px 20px;
+  text-align: center;
+}
+
+.card-name-overlay h3 {
+  font-size: 36px;
+  font-weight: 800;
   color: white;
-  padding: 25px 15px 15px;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Content */
+.card-content {
+  padding: 25px;
+  background: white;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 5px 0;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: #718096;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+}
+
+.card-features-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.feature-item-mini {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.4s ease;
+  font-size: 13px;
+  color: #4a5568;
 }
 
-.pricing-poster:hover .poster-click-hint {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.poster-click-hint svg {
-  width: 20px;
-  height: 20px;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.15);
-  }
-}
-
-/* Pricing Features */
-.pricing-features {
-  list-style: none;
-  padding: 20px;
-  margin: 0;
-  background: white;
-}
-
-.pricing-features li {
-  padding: 10px 0;
-  border-bottom: 1px solid #f0f0f0;
-  color: #555;
-  font-size: 14px;
-  display: flex;
-  align-items: flex-start;
-  transition: color 0.2s;
-}
-
-.pricing-features li:last-child {
-  border-bottom: none;
-}
-
-.pricing-features li:hover {
-  color: #333;
-}
-
-.pricing-features li:before {
-  content: "✓";
-  color: var(--yellow2);
+.check-icon {
+  color: #48bb78;
   font-weight: 700;
-  margin-right: 10px;
   font-size: 16px;
   flex-shrink: 0;
 }
 
-/* CTA Button */
-.pricing-cta {
-  width: calc(100% - 40px);
-  margin: 0 20px 20px;
-  padding: 14px 24px;
-  font-size: 15px;
-  font-weight: 600;
+/* Navigation Buttons */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e2e8f0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.pricing-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+.carousel-nav-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: white;
+  border-color: var(--yellow2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Image Modal Styles - IMPROVED FOR MOBILE */
-.image-modal {
+.carousel-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-nav-btn.left {
+  left: 20px;
+}
+
+.carousel-nav-btn.right {
+  right: 20px;
+}
+
+.carousel-nav-btn svg {
+  color: var(--text-dark);
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 50px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot.active {
+  background: var(--yellow2);
+  width: 40px;
+  border-radius: 6px;
+}
+
+.dot:hover {
+  background: #a0aec0;
+}
+
+/* Modal Overlay */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(0, 0, 0, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 1000;
   padding: 20px;
   animation: fadeIn 0.3s ease;
   backdrop-filter: blur(8px);
-  overflow: auto;
 }
 
 @keyframes fadeIn {
@@ -266,332 +302,521 @@
   }
 }
 
-.modal-content {
+.modal-content-carousel {
+  background: white;
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
-  max-width: 95%;
-  max-height: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  padding-top: 60px;
+  animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes scaleIn {
+@keyframes slideUp {
   from {
-    transform: scale(0.85) rotate(-2deg);
+    transform: translateY(50px) scale(0.95);
     opacity: 0;
   }
   to {
-    transform: scale(1) rotate(0deg);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
 
-.modal-content img {
-  max-width: 100%;
-  max-height: calc(95vh - 100px);
-  width: auto;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
-  object-fit: contain;
-}
-
-.modal-close {
+.modal-close-btn {
   position: absolute;
-  top: 0;
-  right: 0;
-  background: var(--gradient);
-  color: var(--text-dark);
-  border: none;
+  top: 20px;
+  right: 20px;
   width: 48px;
   height: 48px;
   border-radius: 50%;
+  background: var(--gradient);
+  color: var(--text-dark);
+  border: none;
   font-size: 32px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   font-weight: 300;
   line-height: 1;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-  z-index: 10;
 }
 
-.modal-close:hover {
-  transform: rotate(90deg) scale(1.15);
+.modal-close-btn:hover {
+  transform: rotate(90deg) scale(1.1);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
-.modal-close:active {
+.modal-close-btn:active {
   transform: rotate(90deg) scale(1.05);
 }
 
-.modal-title {
-  text-align: center;
-  color: white;
-  font-size: 22px;
-  font-weight: 700;
-  margin-top: 20px;
-  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
-  letter-spacing: 0.5px;
+.modal-body {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Responsive Styles */
+/* Modal Image */
+.modal-image-wrapper {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+}
+
+.modal-poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-overlay-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  padding: 60px 40px 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-plan-name {
+  font-size: 64px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Details */
+.modal-details {
+  padding: 40px;
+}
+
+.modal-details h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 30px 0;
+}
+
+.modal-features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.modal-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 16px;
+  color: #4a5568;
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-check {
+  color: #48bb78;
+  font-weight: 700;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.modal-cta-btn {
+  width: 100%;
+  padding: 16px 32px;
+  background: var(--gradient);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255, 204, 0, 0.4);
+}
+
+.modal-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 204, 0, 0.5);
+}
+
+.modal-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================
+   RESPONSIVE STYLES
+   ========================================== */
+
 @media (max-width: 1024px) {
-  .pricing-slider-wrapper {
-    padding: 0 55px;
+  .carousel-container {
+    height: 550px;
   }
 
-  .slider-nav {
-    width: 45px;
-    height: 45px;
+  .carousel-card {
+    width: 320px;
+    height: 480px;
   }
 
-  .pricing-card {
-    min-width: 300px;
-    max-width: 300px;
+  .carousel-card.prevSlide {
+    transform: translateX(-350px) scale(0.8) rotateY(25deg);
   }
 
-  .pricing-card.recommended {
-    min-width: 320px;
-    max-width: 320px;
+  .carousel-card.nextSlide {
+    transform: translateX(350px) scale(0.8) rotateY(-25deg);
   }
 
-  .pricing-poster {
+  .card-image-wrapper {
+    height: 280px;
+  }
+
+  .card-name-overlay h3 {
+    font-size: 32px;
+  }
+
+  .modal-image-wrapper {
     height: 350px;
+  }
+
+  .modal-plan-name {
+    font-size: 56px;
   }
 }
 
 @media (max-width: 768px) {
   .pricing {
-    padding: 40px 0;
+    padding: 60px 0;
   }
 
-  .pricing-slider-wrapper {
-    padding: 0 50px;
+  .carousel-header h2 {
+    font-size: 36px;
   }
 
-  .slider-nav {
-    width: 42px;
-    height: 42px;
+  .carousel-subtitle {
+    font-size: 16px;
   }
 
-  .slider-nav svg {
+  .carousel-container {
+    height: 500px;
+  }
+
+  .carousel-card {
+    width: 280px;
+    height: 440px;
+  }
+
+  .carousel-card.prevSlide {
+    transform: translateX(-250px) scale(0.75) rotateY(30deg);
+    opacity: 0.3;
+  }
+
+  .carousel-card.nextSlide {
+    transform: translateX(250px) scale(0.75) rotateY(-30deg);
+    opacity: 0.3;
+  }
+
+  .card-image-wrapper {
+    height: 260px;
+  }
+
+  .card-name-overlay h3 {
+    font-size: 28px;
+  }
+
+  .card-content {
+    padding: 20px;
+    height: 180px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .carousel-nav-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-nav-btn.left {
+    left: 10px;
+  }
+
+  .carousel-nav-btn.right {
+    right: 10px;
+  }
+
+  .carousel-nav-btn svg {
     width: 20px;
     height: 20px;
   }
 
-  .pricing-grid {
-    gap: 20px;
-    padding: 15px 5px;
+  .modal-image-wrapper {
+    height: 300px;
   }
 
-  .pricing-card {
-    min-width: 280px;
-    max-width: 280px;
+  .modal-plan-name {
+    font-size: 48px;
   }
 
-  .pricing-card.recommended {
-    min-width: 300px;
-    max-width: 300px;
+  .modal-details {
+    padding: 30px 25px;
   }
 
-  .pricing-poster {
-    height: 320px;
+  .modal-details h3 {
+    font-size: 28px;
   }
 
-  .recommended-badge {
-    top: 12px;
-    right: 12px;
-    padding: 6px 16px;
-    font-size: 11px;
-  }
-
-  /* MODAL MOBILE IMPROVEMENTS */
-  .image-modal {
-    padding: 15px;
-  }
-
-  .modal-content {
-    max-width: 100%;
-    max-height: 100%;
-    padding-top: 50px;
-  }
-
-  .modal-content img {
-    max-height: calc(100vh - 120px);
-    border-radius: 12px;
-  }
-
-  .modal-close {
-    top: 0;
-    right: 0;
+  .modal-close-btn {
     width: 44px;
     height: 44px;
     font-size: 28px;
   }
-
-  .modal-title {
-    font-size: 18px;
-    margin-top: 15px;
-  }
-
-  .pricing-features {
-    padding: 16px;
-  }
-
-  .pricing-features li {
-    font-size: 13px;
-    padding: 9px 0;
-  }
-
-  .pricing-cta {
-    width: calc(100% - 32px);
-    margin: 0 16px 16px;
-    padding: 12px 20px;
-    font-size: 14px;
-  }
 }
 
 @media (max-width: 480px) {
-  .pricing-slider-wrapper {
-    padding: 0 45px;
+  .pricing {
+    padding: 50px 0;
   }
 
-  .slider-nav {
-    width: 38px;
-    height: 38px;
+  .carousel-header {
+    margin-bottom: 40px;
   }
 
-  .slider-nav svg {
+  .carousel-header h2 {
+    font-size: 32px;
+  }
+
+  .carousel-subtitle {
+    font-size: 15px;
+  }
+
+  .carousel-container {
+    height: 480px;
+  }
+
+  .carousel-card {
+    width: 260px;
+    height: 420px;
+  }
+
+  .carousel-card.activeSlide {
+    transform: translateX(0) scale(1.05);
+  }
+
+  .carousel-card.prevSlide {
+    transform: translateX(-200px) scale(0.7) rotateY(30deg);
+    opacity: 0.2;
+  }
+
+  .carousel-card.nextSlide {
+    transform: translateX(200px) scale(0.7) rotateY(-30deg);
+    opacity: 0.2;
+  }
+
+  .card-image-wrapper {
+    height: 240px;
+  }
+
+  .card-name-overlay h3 {
+    font-size: 26px;
+  }
+
+  .card-name-overlay {
+    padding: 30px 15px 15px;
+  }
+
+  .card-content {
+    padding: 18px;
+    height: 180px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .card-subtitle {
+    font-size: 11px;
+  }
+
+  .feature-item-mini {
+    font-size: 12px;
+  }
+
+  .carousel-nav-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .carousel-nav-btn svg {
     width: 18px;
     height: 18px;
   }
 
-  .pricing-card {
-    min-width: 260px;
-    max-width: 260px;
+  .carousel-dots {
+    margin-top: 40px;
+    gap: 10px;
   }
 
-  .pricing-card.recommended {
-    min-width: 280px;
-    max-width: 280px;
+  .dot {
+    width: 10px;
+    height: 10px;
   }
 
-  .pricing-poster {
-    height: 300px;
+  .dot.active {
+    width: 35px;
   }
 
-  .poster-click-hint {
-    font-size: 13px;
-    padding: 20px 12px 12px;
+  .modal-overlay {
+    padding: 15px;
   }
 
-  .pricing-features li {
-    font-size: 12px;
+  .modal-image-wrapper {
+    height: 260px;
   }
 
-  /* MODAL MOBILE SMALL SCREEN */
-  .image-modal {
-    padding: 10px;
+  .modal-plan-name {
+    font-size: 40px;
   }
 
-  .modal-content {
-    padding-top: 45px;
+  .modal-overlay-gradient {
+    padding: 40px 20px 20px;
   }
 
-  .modal-content img {
-    max-height: calc(100vh - 100px);
-    border-radius: 10px;
+  .modal-details {
+    padding: 25px 20px;
   }
 
-  .modal-close {
+  .modal-details h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .modal-feature-item {
+    font-size: 14px;
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .feature-check {
+    font-size: 18px;
+  }
+
+  .modal-cta-btn {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+
+  .modal-close-btn {
     width: 40px;
     height: 40px;
     font-size: 26px;
-  }
-
-  .modal-title {
-    font-size: 16px;
-    margin-top: 12px;
+    top: 15px;
+    right: 15px;
   }
 }
 
 /* Extra small devices */
 @media (max-width: 360px) {
-  .image-modal {
-    padding: 8px;
+  .carousel-header h2 {
+    font-size: 28px;
   }
 
-  .modal-content {
-    padding-top: 40px;
+  .carousel-card {
+    width: 240px;
+    height: 400px;
   }
 
-  .modal-content img {
-    max-height: calc(100vh - 90px);
+  .card-image-wrapper {
+    height: 220px;
   }
 
-  .modal-close {
-    width: 36px;
-    height: 36px;
+  .card-name-overlay h3 {
     font-size: 24px;
   }
 
-  .modal-title {
-    font-size: 15px;
-    margin-top: 10px;
+  .modal-image-wrapper {
+    height: 240px;
+  }
+
+  .modal-plan-name {
+    font-size: 36px;
   }
 }
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-  .pricing-card:active {
-    transform: translateY(-4px);
+  .carousel-card:active.activeSlide {
+    transform: translateX(0) scale(1.08);
   }
 
-  .poster-click-hint {
-    opacity: 0.8;
-    transform: translateY(0);
-  }
-
-  .slider-nav:hover {
+  .carousel-nav-btn:hover {
     transform: translateY(-50%) scale(1);
   }
 
-  .slider-nav:active {
+  .carousel-nav-btn:active {
     transform: translateY(-50%) scale(0.9);
   }
 
-  .modal-close:hover {
+  .modal-close-btn:hover {
     transform: none;
   }
 
-  .modal-close:active {
+  .modal-close-btn:active {
     transform: scale(0.95);
+  }
+
+  .modal-cta-btn:hover {
+    transform: none;
+  }
+
+  .modal-cta-btn:active {
+    transform: scale(0.98);
   }
 }
 
 /* Landscape orientation on mobile */
 @media (max-width: 768px) and (orientation: landscape) {
-  .modal-content img {
-    max-height: calc(100vh - 80px);
-    max-width: 90vw;
+  .carousel-container {
+    height: 420px;
   }
 
-  .modal-content {
-    padding-top: 40px;
+  .carousel-card {
+    height: 360px;
   }
 
-  .modal-close {
-    width: 38px;
-    height: 38px;
+  .card-image-wrapper {
+    height: 220px;
   }
 
-  .modal-title {
-    font-size: 16px;
-    margin-top: 10px;
+  .card-content {
+    height: 140px;
+  }
+
+  .modal-image-wrapper {
+    height: 280px;
+  }
+
+  .modal-plan-name {
+    font-size: 42px;
+  }
+
+  .modal-overlay-gradient {
+    padding: 30px 20px 15px;
   }
 }

@@ -1,26 +1,20 @@
 import React, { useState, useRef } from 'react';
-import Reveal from '../reveal';
 
 // Import images
-import posterCV from '../assets/poster/DESTER_CV.jpg';
-import posterFirma from '../assets/poster/DESTER_FIRMA.jpg';
-import posterIzinProperti from '../assets/poster/DESTER_IZIN_PROPERTI.jpg';
-import posterIzinUsaha from '../assets/poster/DESTER_IZIN_USAHA.jpg';
-import posterKooperasi from '../assets/poster/DESTER_KOOPERASI.jpg';
-import posterPerkumpulan from '../assets/poster/DESTER_PERKUMPULAN.jpg';
-import posterPTPerorangan from '../assets/poster/DESTER_PT_PERORANGAN.jpg';
-import posterPTPMA from '../assets/poster/DESTER_PT_PMA.jpg';
-import posterPTPMDN from '../assets/poster/DESTER_PTPMDN.jpg';
-import posterYayasan from '../assets/poster/DESTER_YAYASAN.jpg';
+import poster_01 from '../assets/poster/poster_01.jpeg';
+import poster_02 from '../assets/poster/poster_02.jpeg';
+import poster_03 from '../assets/poster/poster_03.jpeg';
 
 const Pricing = () => {
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
-  const scrollContainerRef = useRef(null);
+  const containerRef = useRef(null);
 
   const plans = [
     {
       name: "CV",
-      poster: posterCV,
+      poster: poster_01,
+      color: "#FF6B6B",
       features: [
         "5 Halaman Website",
         "Domain .com Gratis",
@@ -32,7 +26,8 @@ const Pricing = () => {
     },
     {
       name: "Firma",
-      poster: posterFirma,
+      poster: poster_02,
+      color: "#4ECDC4",
       features: [
         "10 Halaman Website",
         "Domain Premium Gratis",
@@ -46,7 +41,8 @@ const Pricing = () => {
     },
     {
       name: "Izin Properti",
-      poster: posterIzinProperti,
+      poster: poster_03,
+      color: "#95E1D3",
       features: [
         "Unlimited Halaman",
         "Domain Premium Gratis",
@@ -59,203 +55,154 @@ const Pricing = () => {
       ],
       recommended: false
     },
-    {
-      name: "Izin Usaha",
-      poster: posterIzinUsaha,
-      features: [
-        "5 Halaman Website",
-        "Domain .com Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "Support 3 Bulan"
-      ],
-      recommended: false
-    },
-    {
-      name: "Kooperasi",
-      poster: posterKooperasi,
-      features: [
-        "10 Halaman Website",
-        "Domain Premium Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "SEO Optimization",
-        "Support 6 Bulan"
-      ],
-      recommended: false
-    },
-    {
-      name: "Perkumpulan",
-      poster: posterPerkumpulan,
-      features: [
-        "Unlimited Halaman",
-        "Domain Premium Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "Advanced SEO"
-      ],
-      recommended: false
-    },
-    {
-      name: "PT Perorangan",
-      poster: posterPTPerorangan,
-      features: [
-        "5 Halaman Website",
-        "Domain .com Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "Support 3 Bulan"
-      ],
-      recommended: false
-    },
-    {
-      name: "PT PMA",
-      poster: posterPTPMA,
-      features: [
-        "10 Halaman Website",
-        "Domain Premium Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "SEO Optimization"
-      ],
-      recommended: false
-    },
-    {
-      name: "PT PMDN",
-      poster: posterPTPMDN,
-      features: [
-        "Unlimited Halaman",
-        "Domain Premium Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "Advanced SEO"
-      ],
-      recommended: false
-    },
-    {
-      name: "Yayasan",
-      poster: posterYayasan,
-      features: [
-        "5 Halaman Website",
-        "Domain .com Gratis",
-        "SSL Certificate",
-        "Responsive Design",
-        "Support 3 Bulan"
-      ],
-      recommended: false
-    }
   ];
 
-  const openModal = (poster, name) => {
-    setSelectedImage({ src: poster, title: name });
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? plans.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === plans.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const openModal = (plan) => {
+    setSelectedImage(plan);
   };
 
   const closeModal = () => {
     setSelectedImage(null);
   };
 
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: -350,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({
-        left: 350,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <section className="pricing" id="harga">
       <div className="container">
-        <div className="section-title">
+        <div className="carousel-header">
           <h2>Paket Harga</h2>
-          <p>Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
+          <p className="carousel-subtitle">Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
         </div>
 
-        {/* Pricing Slider Container */}
-        <div className="pricing-slider-wrapper">
+        <div className="carousel-container" ref={containerRef}>
           {/* Left Navigation Button */}
-          <button 
-            className="slider-nav slider-nav-left" 
-            onClick={scrollLeft}
-            aria-label="Slide Left"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <button className="carousel-nav-btn left" onClick={goToPrevious}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
 
+          {/* Carousel Track */}
+          <div className="carousel-track">
+            {plans.map((plan, index) => {
+              let position = 'nextSlide';
+              if (index === currentIndex) {
+                position = 'activeSlide';
+              } else if (
+                index === currentIndex - 1 ||
+                (currentIndex === 0 && index === plans.length - 1)
+              ) {
+                position = 'prevSlide';
+              }
+
+              return (
+                <div
+                  key={index}
+                  className={`carousel-card ${position}`}
+                  onClick={() => position === 'activeSlide' && openModal(plan)}
+                >
+                  {plan.recommended && (
+                    <div className="recommended-badge-carousel">Recommended</div>
+                  )}
+                  
+                  {/* Poster Image */}
+                  <div className="card-image-wrapper">
+                    <img 
+                      src={plan.poster} 
+                      alt={plan.name}
+                      className="card-poster-image"
+                    />
+                    <div className="card-name-overlay">
+                      <h3>{plan.name}</h3>
+                    </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="card-content">
+                    <h4 className="card-title">{plan.name}</h4>
+                    <p className="card-subtitle">PACKAGE</p>
+                    
+                    {position === 'activeSlide' && (
+                      <div className="card-features-preview">
+                        {plan.features.slice(0, 3).map((feature, idx) => (
+                          <div key={idx} className="feature-item-mini">
+                            <span className="check-icon">✓</span>
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
           {/* Right Navigation Button */}
-          <button 
-            className="slider-nav slider-nav-right" 
-            onClick={scrollRight}
-            aria-label="Slide Right"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <button className="carousel-nav-btn right" onClick={goToNext}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
+        </div>
 
-          {/* Pricing Cards */}
-          <div className="pricing-grid" ref={scrollContainerRef}>
-            {plans.map((plan, index) => (
-              <Reveal
-                key={index}
-                className={`card pricing-card ${plan.recommended ? 'recommended' : ''}`}
-                delay={index * 50}
-              >
-                {plan.recommended && (
-                  <div className="recommended-badge">Recommended</div>
-                )}
-                
-                {/* Poster Image as Header */}
-                <div 
-                  className="pricing-poster"
-                  onClick={() => openModal(plan.poster, plan.name)}
-                >
-                  <img 
-                    src={plan.poster} 
-                    alt={plan.name}
-                    loading="lazy"
-                  />
-                  <div className="poster-click-hint">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-                    </svg>
-                    Klik untuk perbesar
-                  </div>
-                </div>
-
-                {/* Features List */}
-                <ul className="pricing-features">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <button className="btn-primary pricing-cta">Pilih Paket</button>
-              </Reveal>
-            ))}
-          </div>
+        {/* Carousel Dots Navigation */}
+        <div className="carousel-dots">
+          {plans.map((_, index) => (
+            <button
+              key={index}
+              className={`dot ${index === currentIndex ? 'active' : ''}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
 
-      {/* Image Modal */}
+      {/* Modal for Full Details */}
       {selectedImage && (
-        <div className="image-modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal}>×</button>
-            <img src={selectedImage.src} alt={selectedImage.title} />
-            <p className="modal-title">{selectedImage.title}</p>
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content-carousel" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={closeModal}>×</button>
+            
+            <div className="modal-body">
+              {/* Modal Image */}
+              <div className="modal-image-wrapper">
+                <img 
+                  src={selectedImage.poster} 
+                  alt={selectedImage.name}
+                  className="modal-poster-image"
+                />
+                <div className="modal-overlay-gradient">
+                  <h2 className="modal-plan-name">{selectedImage.name}</h2>
+                </div>
+              </div>
+
+              {/* Modal Details */}
+              <div className="modal-details">
+                <h3>{selectedImage.name} Package</h3>
+                <div className="modal-features">
+                  {selectedImage.features.map((feature, idx) => (
+                    <div key={idx} className="modal-feature-item">
+                      <span className="feature-check">✓</span>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <button className="modal-cta-btn">Pilih Paket Ini</button>
+              </div>
+            </div>
           </div>
         </div>
       )}

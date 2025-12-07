@@ -27,15 +27,15 @@ const TeamSection = () => {
   const prev = () => setActiveIndex((activeIndex - 1 + team.length) % team.length);
 
   return (
-    <section className="team-section">
+    <section className="team-section-halimoon">
       <Reveal delay={100}>
-        <h2 className="team-title">Our Team</h2>
+        <h2 className="team-title-halimoon">Our Team</h2>
       </Reveal>
 
       <Reveal delay={200}>
-        <div className="carousel-wrapper">
-          <button className="carousel-btn left" onClick={prev}>‹</button>
-          <div className="carousel">
+        <div className="carousel-wrapper-halimoon">
+          <button className="carousel-btn-halimoon left" onClick={prev}>‹</button>
+          <div className="carousel-halimoon">
             {team.map((person, index) => {
               const offset = index - activeIndex;
               const positionClass =
@@ -43,19 +43,19 @@ const TeamSection = () => {
 
               return (
                 <div
-                  key={`${person.id}-${activeIndex}`} // key dinamis untuk trigger animasi
-                  className={`carousel-card ${positionClass}`}
+                  key={`${person.id}-${activeIndex}`}
+                  className={`carousel-card-team-halimoon ${positionClass}`}
                 >
-                  <div className="team-img-box">
+                  <div className="team-img-box-halimoon">
                     <img src={person.image} alt={person.name} />
                   </div>
-                  <h3 className="team-name">{person.name}</h3>
-                  <p className="team-role">{person.role}</p>
+                  <h3 className="team-name-halimoon">{person.name}</h3>
+                  <p className="team-role-halimoon">{person.role}</p>
                 </div>
               );
             })}
           </div>
-          <button className="carousel-btn right" onClick={next}>›</button>
+          <button className="carousel-btn-halimoon right" onClick={next}>›</button>
         </div>
       </Reveal>
     </section>
